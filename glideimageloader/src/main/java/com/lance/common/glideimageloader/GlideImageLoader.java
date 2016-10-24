@@ -37,7 +37,7 @@ public class GlideImageLoader {
     }
 
     //默认配置
-    public static GlideImageConfig defConfig = new GlideImageConfig.Builder().
+    private static GlideImageConfig defConfig = new GlideImageConfig.Builder().
             setCropType(GlideImageConfig.CENTER_CROP).
             setAsBitmap(true).
             setPlaceHolderResId(android.R.color.white).
@@ -47,44 +47,191 @@ public class GlideImageLoader {
 
     /**
      * 加载String类型的资源
-     * SD卡资源："file://"+ Environment.getExternalStorageDirectory().getPath()+"/test.jpg"<p/>
-     * assets资源："file:///android_asset/f003.gif"<p/>
-     * raw资源："android.resource://com.lance.app/raw/raw_1"或"android.resource://com.lance.app/raw/"+R.raw.raw_1<p/>
-     * drawable资源："android.resource://com.lance.app/drawable/news"或load"android.resource://com.lance.app/drawable/"+R.drawable.news<p/>
-     * ContentProvider资源："content://media/external/images/media/139469"<p/>
-     * http资源："http://www.xxx.com/1438760757_3588.jpg"<p/>
-     * https资源："https://www.xxx.com/XXXXXXXXXX-476-538.jpg_240x5000q50.jpg_.webp"<p/>
+     * SD卡资源："file://"+ Environment.getExternalStorageDirectory().getPath()+"/test.jpg"
+     * assets资源："file:///android_asset/f003.gif"
+     * raw资源："android.resource://com.lance.app/raw/raw_1"或"android.resource://com.lance.app/raw/"+R.raw.raw_1
+     * drawable资源："android.resource://com.lance.app/drawable/news"或"android.resource://com.lance.app/drawable/"+R.drawable.news
+     * ContentProvider资源："content://media/external/images/media/139469"
+     * http资源："http://www.xxx.com/1438760757_3588.jpg"
+     * https资源："https://www.xxx.com/XXXXXXXXXX-476-538.jpg_240x5000q50.jpg_.webp"
      *
-     * @param view
-     * @param imageUrl
-     * @param config
-     * @param listener
+     * @param view     ImageView to show the image
+     * @param imageUrl the url of the image to show
+     * @param config   GlideImageConfig
+     * @param listener GlideLoadingListener
      */
     public static void loadStringResource(ImageView view, String imageUrl, GlideImageConfig config, GlideLoadingListener listener) {
         load(view.getContext(), view, imageUrl, config, listener);
     }
 
+    /**
+     * 加载String类型的资源
+     * SD卡资源："file://"+ Environment.getExternalStorageDirectory().getPath()+"/test.jpg"
+     * assets资源："file:///android_asset/f003.gif"
+     * raw资源："android.resource://com.lance.app/raw/raw_1"或"android.resource://com.lance.app/raw/"+R.raw.raw_1
+     * drawable资源："android.resource://com.lance.app/drawable/news"或"android.resource://com.lance.app/drawable/"+R.drawable.news
+     * ContentProvider资源："content://media/external/images/media/139469"
+     * http资源："http://www.xxx.com/1438760757_3588.jpg"
+     * https资源："https://www.xxx.com/XXXXXXXXXX-476-538.jpg_240x5000q50.jpg_.webp"
+     *
+     * @param view     ImageView to show the image
+     * @param imageUrl the url of the image to show
+     * @param config   GlideImageConfig
+     */
+    public static void loadStringResource(ImageView view, String imageUrl, GlideImageConfig config) {
+        load(view.getContext(), view, imageUrl, config, null);
+    }
+
+    /**
+     * 加载String类型的资源
+     * SD卡资源："file://"+ Environment.getExternalStorageDirectory().getPath()+"/test.jpg"
+     * assets资源："file:///android_asset/f003.gif"
+     * raw资源："android.resource://com.lance.app/raw/raw_1"或"android.resource://com.lance.app/raw/"+R.raw.raw_1
+     * drawable资源："android.resource://com.lance.app/drawable/news"或"android.resource://com.lance.app/drawable/"+R.drawable.news
+     * ContentProvider资源："content://media/external/images/media/139469"
+     * http资源："http://www.xxx.com/1438760757_3588.jpg"
+     * https资源："https://www.xxx.com/XXXXXXXXXX-476-538.jpg_240x5000q50.jpg_.webp"
+     *
+     * @param view     ImageView to show the image
+     * @param imageUrl the url of the image to show
+     */
+    public static void loadStringResource(ImageView view, String imageUrl) {
+        load(view.getContext(), view, imageUrl, null, null);
+    }
+
+    /**
+     * 加载本地文件
+     *
+     * @param view     ImageView to show the image
+     * @param file     the file of the image to show
+     * @param config   GlideImageConfig
+     * @param listener GlideLoadingListener
+     */
     public static void loadFile(ImageView view, File file, GlideImageConfig config, GlideLoadingListener listener) {
         load(view.getContext(), view, file, config, listener);
     }
 
+    /**
+     * 加载本地文件
+     *
+     * @param view   ImageView to show the image
+     * @param file   the file of the image to show
+     * @param config GlideImageConfig
+     */
+    public static void loadFile(ImageView view, File file, GlideImageConfig config) {
+        load(view.getContext(), view, file, config, null);
+    }
+
+    /**
+     * 加载本地文件
+     *
+     * @param view ImageView to show the image
+     * @param file the file of the image to show
+     */
+    public static void loadFile(ImageView view, File file) {
+        load(view.getContext(), view, file, null, null);
+    }
+
+    /**
+     * 加载资源文件
+     *
+     * @param view       ImageView to show the image
+     * @param resourceId the resource id of the image to show
+     * @param config     GlideImageConfig
+     * @param listener   GlideLoadingListener
+     */
     public static void loadResourceId(ImageView view, Integer resourceId, GlideImageConfig config, GlideLoadingListener listener) {
         load(view.getContext(), view, resourceId, config, listener);
     }
 
+    /**
+     * 加载资源文件
+     *
+     * @param view       ImageView to show the image
+     * @param resourceId the resource id of the image to show
+     * @param config     GlideImageConfig
+     */
+    public static void loadResourceId(ImageView view, Integer resourceId, GlideImageConfig config) {
+        load(view.getContext(), view, resourceId, config, null);
+    }
+
+    /**
+     * 加载资源文件
+     *
+     * @param view       ImageView to show the image
+     * @param resourceId the resource id of the image to show
+     */
+    public static void loadResourceId(ImageView view, Integer resourceId) {
+        load(view.getContext(), view, resourceId, null, null);
+    }
+
+    /**
+     * 加载指定URL的图片
+     *
+     * @param view     ImageView to show the image
+     * @param uri      the uri of the image to show
+     * @param config   GlideImageConfig
+     * @param listener GlideLoadingListener
+     */
     public static void loadUri(ImageView view, Uri uri, GlideImageConfig config, GlideLoadingListener listener) {
         load(view.getContext(), view, uri, config, listener);
     }
 
-    public static void loadGif(ImageView view, String gifUrl, GlideImageConfig config, GlideLoadingListener listener) {
-        load(view.getContext(), view, gifUrl, GlideImageConfig.parseBuilder(config).setAsGif(true).build(), listener);
+    /**
+     * 加载指定URL的图片
+     *
+     * @param view   ImageView to show the image
+     * @param uri    the uri of the image to show
+     * @param config GlideImageConfig
+     */
+    public static void loadUri(ImageView view, Uri uri, GlideImageConfig config) {
+        load(view.getContext(), view, uri, config, null);
     }
 
+    /**
+     * 加载指定URL的图片
+     *
+     * @param view ImageView to show the image
+     * @param uri  the uri of the image to show
+     */
+    public static void loadUri(ImageView view, Uri uri) {
+        load(view.getContext(), view, uri, null, null);
+    }
+
+    /**
+     * 加载GIF动图
+     *
+     * @param view   ImageView to show the image
+     * @param gifUrl the url of the gif image to show
+     * @param config GlideImageConfig
+     */
+    public static void loadGif(ImageView view, String gifUrl, GlideImageConfig config) {
+        load(view.getContext(), view, gifUrl, GlideImageConfig.parseBuilder(config).setAsGif(true).build(), null);
+    }
+
+    /**
+     * 加载GIF动图
+     *
+     * @param view   ImageView to show the image
+     * @param gifUrl the url of the gif image to show
+     */
+    public static void loadGif(ImageView view, String gifUrl) {
+        load(view.getContext(), view, gifUrl, GlideImageConfig.parseBuilder(defConfig).setAsGif(true).build(), null);
+    }
+
+    /**
+     * 加载指定url图片
+     *
+     * @param context  Context
+     * @param objUrl   the url object of the image to show
+     * @param config   GlideImageConfig
+     * @param listener GlideLoadingListener
+     */
     public static void loadTarget(Context context, Object objUrl, GlideImageConfig config, final GlideLoadingListener listener) {
         load(context, null, objUrl, config, listener);
     }
 
-    private static void load(Context context, ImageView view, Object objUrl, GlideImageConfig config, final GlideLoadingListener listener) {
+    private static void load(Context context, ImageView imageView, Object objUrl, GlideImageConfig config, final GlideLoadingListener listener) {
         if (null == objUrl) {
             throw new IllegalArgumentException("objUrl is null");
         } else if (null == config) {
@@ -180,12 +327,12 @@ public class GlideImageLoader {
             }
             if (null != config.getThumbnailUrl()) {
                 BitmapRequestBuilder thumbnailRequest = Glide.with(context).load(config.getThumbnailUrl()).asBitmap();
-                builder.thumbnail(thumbnailRequest).into(view);
+                builder.thumbnail(thumbnailRequest).into(imageView);
             } else {
-                setTargetView(builder, config, view);
+                setTargetView(builder, config, imageView);
             }
         } catch (Exception e) {
-            view.setImageResource(config.getErrorResId());
+            imageView.setImageResource(config.getErrorResId());
         }
     }
 
@@ -225,9 +372,9 @@ public class GlideImageLoader {
     /**
      * 加载bitmap
      *
-     * @param context
-     * @param url
-     * @param listener
+     * @param context  Context
+     * @param url      the url of the bitmap to load
+     * @param listener GlideBitmapLoadingListener
      */
     public static void loadBitmap(Context context, Object url, final GlideBitmapLoadingListener listener) {
         if (url == null) {
@@ -254,9 +401,9 @@ public class GlideImageLoader {
     /**
      * 高优先级加载
      *
-     * @param url
-     * @param imageView
-     * @param listener
+     * @param url       the url of the image to load
+     * @param imageView the ImageView to show the image
+     * @param listener  GlideLoadingListener
      */
     public static void loadImageWithHighPriority(Object url, ImageView imageView, final GlideLoadingListener listener) {
         if (url == null) {
@@ -290,14 +437,18 @@ public class GlideImageLoader {
     }
 
     /**
-     * 取消所有正在下载或等待下载的任务。
+     * 暂停所有正在下载或等待下载的任务
+     *
+     * @param context Context
      */
-    public static void cancelAllTasks(Context context) {
+    public static void pauseAllTasks(Context context) {
         Glide.with(context).pauseRequests();
     }
 
     /**
      * 恢复所有任务
+     *
+     * @param context Context
      */
     public static void resumeAllTasks(Context context) {
         Glide.with(context).resumeRequests();
@@ -306,7 +457,7 @@ public class GlideImageLoader {
     /**
      * 清除磁盘缓存
      *
-     * @param context
+     * @param context Context
      */
     public static void clearDiskCache(final Context context) {
         new Thread(new Runnable() {
@@ -320,13 +471,18 @@ public class GlideImageLoader {
     /**
      * 清除所有缓存
      *
-     * @param context
+     * @param context Context
      */
     public static void cleanAll(Context context) {
         clearDiskCache(context);
         Glide.get(context).clearMemory();
     }
 
+    /**
+     * 清除目标View
+     *
+     * @param view the target view
+     */
     public static void clearTarget(View view) {
         Glide.clear(view);
     }
