@@ -26,6 +26,8 @@ import com.lance.common.glideimageloader.transformations.RotateTransformation;
 
 import java.io.File;
 
+import static com.bumptech.glide.Glide.with;
+
 /**
  * Created by lindan on 16-10-20.
  * Glide 图片加载类
@@ -247,7 +249,7 @@ public class GlideImageLoader {
                     request.fitCenter();
                 }
                 builder = request;
-            } else if (config.isAsBitmap()) {  //bitmap 类型
+            } else if (config.isAsBitmap()) {  //bitmap类型
                 BitmapRequestBuilder request = Glide.with(context).load(objUrl).asBitmap();
                 if (config.getCropType() == GlideImageConfig.CENTER_CROP) {
                     request.centerCrop();
@@ -286,8 +288,8 @@ public class GlideImageLoader {
                     request.transform(new RotateTransformation(context, config.getRotateDegree()));
                 }
                 builder = request;
-            } else if (config.isCrossFade()) { // 渐入渐出动画
-                DrawableRequestBuilder request = Glide.with(context).load(objUrl).crossFade();
+            } else if (config.isCrossFade()) { //渐入渐出动画
+                DrawableRequestBuilder request = with(context).load(objUrl).crossFade();
                 if (config.getCropType() == GlideImageConfig.CENTER_CROP) {
                     request.centerCrop();
                 } else {
@@ -326,7 +328,7 @@ public class GlideImageLoader {
                 setListener(builder, listener);
             }
             if (null != config.getThumbnailUrl()) {
-                BitmapRequestBuilder thumbnailRequest = Glide.with(context).load(config.getThumbnailUrl()).asBitmap();
+                BitmapRequestBuilder thumbnailRequest = with(context).load(config.getThumbnailUrl()).asBitmap();
                 builder.thumbnail(thumbnailRequest).into(imageView);
             } else {
                 setTargetView(builder, config, imageView);
@@ -340,9 +342,7 @@ public class GlideImageLoader {
         request.listener(new RequestListener() {
             @Override
             public boolean onException(Exception e, Object model, Target target, boolean isFirstResource) {
-                if (!e.getMessage().equals("divide by zero")) {
-                    listener.onError();
-                }
+                listener.onError();
                 return false;
             }
 
@@ -382,7 +382,7 @@ public class GlideImageLoader {
                 listener.onError();
             }
         } else {
-            Glide.with(context).
+            with(context).
                     load(url).
                     asBitmap().
                     diskCacheStrategy(DiskCacheStrategy.NONE).
@@ -411,7 +411,7 @@ public class GlideImageLoader {
                 listener.onError();
             }
         } else {
-            Glide.with(imageView.getContext()).
+            with(imageView.getContext()).
                     load(url).
                     asBitmap().
                     priority(Priority.HIGH).
@@ -442,7 +442,7 @@ public class GlideImageLoader {
      * @param context Context
      */
     public static void pauseAllTasks(Context context) {
-        Glide.with(context).pauseRequests();
+        with(context).pauseRequests();
     }
 
     /**
@@ -451,7 +451,7 @@ public class GlideImageLoader {
      * @param context Context
      */
     public static void resumeAllTasks(Context context) {
-        Glide.with(context).resumeRequests();
+        with(context).resumeRequests();
     }
 
     /**
@@ -460,12 +460,12 @@ public class GlideImageLoader {
      * @param context Context
      */
     public static void clearDiskCache(final Context context) {
-        new Thread(new Runnable() {
+        new Thread() {
             @Override
             public void run() {
                 Glide.get(context).clearDiskCache();
             }
-        }).start();
+        }.start();
     }
 
     /**
