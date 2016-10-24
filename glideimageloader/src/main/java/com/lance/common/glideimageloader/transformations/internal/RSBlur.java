@@ -1,4 +1,4 @@
-package com.lance.common.imageloader.transformations.internal;
+package com.lance.common.glideimageloader.transformations.internal;
 
 import android.annotation.TargetApi;
 import android.content.Context;

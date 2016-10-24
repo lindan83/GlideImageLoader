@@ -1,4 +1,4 @@
-<manifest package="com.lance.common.imageloader.demo"
+<manifest package="com.lance.common.glideimageloader.demo"
           xmlns:android="http://schemas.android.com/apk/res/android">
 
     <application

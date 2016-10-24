@@ -1,4 +1,4 @@
-package com.lance.common.imageloader.transformations;
+package com.lance.common.glideimageloader.transformations;
 
 import android.content.Context;
 import android.graphics.Bitmap;

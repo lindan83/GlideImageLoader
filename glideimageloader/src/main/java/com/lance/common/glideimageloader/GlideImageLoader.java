@@ -1,4 +1,4 @@
-package com.lance.common.imageloader;
+package com.lance.common.glideimageloader;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -18,11 +18,11 @@ import com.bumptech.glide.request.animation.GlideAnimation;
 import com.bumptech.glide.request.target.SimpleTarget;
 import com.bumptech.glide.request.target.Target;
 import com.bumptech.glide.signature.StringSignature;
-import com.lance.common.imageloader.transformations.BlurTransformation;
-import com.lance.common.imageloader.transformations.GlideCircleTransformation;
-import com.lance.common.imageloader.transformations.GlideRoundTransformation;
-import com.lance.common.imageloader.transformations.GrayscaleTransformation;
-import com.lance.common.imageloader.transformations.RotateTransformation;
+import com.lance.common.glideimageloader.transformations.BlurTransformation;
+import com.lance.common.glideimageloader.transformations.GlideCircleTransformation;
+import com.lance.common.glideimageloader.transformations.GlideRoundTransformation;
+import com.lance.common.glideimageloader.transformations.GrayscaleTransformation;
+import com.lance.common.glideimageloader.transformations.RotateTransformation;
 
 import java.io.File;
 

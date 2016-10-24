@@ -1,4 +1,4 @@
-package com.lance.common.imageloader.transformations.internal;
+package com.lance.common.glideimageloader.transformations.internal;
 
 import android.content.Context;
 import android.graphics.drawable.Drawable;

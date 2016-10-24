@@ -1,4 +1,4 @@
-<manifest package="com.lance.common.imageloader"
+<manifest package="com.lance.common.glideimageloader"
           xmlns:android="http://schemas.android.com/apk/res/android">
 
     <application android:allowBackup="true"

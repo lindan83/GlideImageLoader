@@ -1,4 +1,4 @@
-package com.lance.common.imageloader.transformations;
+package com.lance.common.glideimageloader.transformations;
 
 /**
  * Copyright (C) 2015 Wasabeef
@@ -28,8 +28,8 @@ import com.bumptech.glide.load.Transformation;
 import com.bumptech.glide.load.engine.Resource;
 import com.bumptech.glide.load.engine.bitmap_recycle.BitmapPool;
 import com.bumptech.glide.load.resource.bitmap.BitmapResource;
-import com.lance.common.imageloader.transformations.internal.FastBlur;
-import com.lance.common.imageloader.transformations.internal.RSBlur;
+import com.lance.common.glideimageloader.transformations.internal.FastBlur;
+import com.lance.common.glideimageloader.transformations.internal.RSBlur;
 
 public class BlurTransformation implements Transformation<Bitmap> {
 

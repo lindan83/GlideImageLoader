@@ -1,4 +1,4 @@
-package com.lance.common.imageloader.transformations;
+package com.lance.common.glideimageloader.transformations;
 
 /**
  * Copyright (C) 2015 Wasabeef

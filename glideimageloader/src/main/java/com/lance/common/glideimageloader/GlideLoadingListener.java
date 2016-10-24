@@ -1,4 +1,4 @@
-package com.lance.common.imageloader;
+package com.lance.common.glideimageloader;
 
 /**
  * Created by lindan on 16-10-20.
