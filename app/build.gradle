@@ -27,6 +27,6 @@ dependencies {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
     testCompile 'junit:junit:4.12'
-    compile project(':glideimageloader')
     compile 'com.android.support:appcompat-v7:25.0.0'
+    compile 'com.lance.common:glideimageloader:1.0'
 }
