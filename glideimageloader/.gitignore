@@ -1,3 +1,4 @@
 /build
 /project.properties
 /local.properties
+/bintrayUpload.gradle
