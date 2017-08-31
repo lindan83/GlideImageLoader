@@ -6,21 +6,20 @@ import android.graphics.BitmapShader;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.RectF;
+import android.os.Build;
 
 import com.bumptech.glide.load.engine.bitmap_recycle.BitmapPool;
 import com.bumptech.glide.load.resource.bitmap.BitmapTransformation;
-
-import static android.R.attr.radius;
 
 /**
  * Created by lindan on 16-10-18.
  */
 
 public class GlideRoundTransformation extends BitmapTransformation {
-    private float mRadius;
-    private int mBorderColor;
-    private int mBorderWidth;
-    private int mBorderAlpha;
+    private float radius;
+    private int borderColor;
+    private int borderWidth;
+    private int borderAlpha;
 
     private Paint mBorderPaint;
 
@@ -41,7 +40,7 @@ public class GlideRoundTransformation extends BitmapTransformation {
      */
     public GlideRoundTransformation(Context context, int radius) {
         super(context);
-        mRadius = radius;
+        this.radius = radius;
     }
 
     /**
@@ -53,17 +52,17 @@ public class GlideRoundTransformation extends BitmapTransformation {
      */
     public GlideRoundTransformation(Context context, int radius, int borderColor, int borderWidth, int borderAlpha) {
         super(context);
-        mRadius = radius;
-        mBorderAlpha = borderAlpha;
-        mBorderColor = borderColor;
-        mBorderWidth = borderWidth;
+        this.radius = radius;
+        this.borderAlpha = borderAlpha;
+        this.borderColor = borderColor;
+        this.borderWidth = borderWidth;
         mBorderPaint = new Paint();
         mBorderPaint.setAntiAlias(true);
         mBorderPaint.setDither(true);
         mBorderPaint.setStyle(Paint.Style.STROKE);
-        mBorderPaint.setColor(mBorderColor);
-        mBorderPaint.setAlpha(mBorderAlpha);
-        mBorderPaint.setStrokeWidth(mBorderWidth);
+        mBorderPaint.setColor(this.borderColor);
+        mBorderPaint.setAlpha(this.borderAlpha);
+        mBorderPaint.setStrokeWidth(this.borderWidth);
     }
 
     @Override
@@ -83,17 +82,21 @@ public class GlideRoundTransformation extends BitmapTransformation {
         Paint paint = new Paint();
         paint.setShader(new BitmapShader(source, BitmapShader.TileMode.CLAMP, BitmapShader.TileMode.CLAMP));
         paint.setAntiAlias(true);
-        RectF rectF = new RectF(mBorderWidth, mBorderWidth, source.getWidth() - mBorderWidth, source.getHeight() - mBorderWidth);
-        canvas.drawRoundRect(rectF, mRadius - mBorderWidth / 2, mRadius - mBorderWidth / 2, paint);
+        RectF rectF = new RectF(borderWidth, borderWidth, source.getWidth() - borderWidth, source.getHeight() - borderWidth);
+        canvas.drawRoundRect(rectF, radius - borderWidth / 2, radius - borderWidth / 2, paint);
 
-        if (mBorderPaint != null && mBorderWidth > 0) {
-            canvas.drawRoundRect(mBorderWidth / 2, mBorderWidth / 2, source.getWidth() - mBorderWidth / 2, source.getHeight() - mBorderWidth / 2, mRadius, mRadius, mBorderPaint);
+        if (mBorderPaint != null && borderWidth > 0) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                canvas.drawRoundRect(borderWidth / 2, borderWidth / 2, source.getWidth() - borderWidth / 2, source.getHeight() - borderWidth / 2, radius, radius, mBorderPaint);
+            } else {
+                canvas.drawRoundRect(new RectF(borderWidth / 2, borderWidth / 2, source.getWidth() - borderWidth / 2, source.getHeight() - borderWidth / 2), radius, radius, mBorderPaint);
+            }
         }
         return result;
     }
 
     @Override
     public String getId() {
-        return getClass().getName() + Math.round(radius);
+        return getClass().getName() + Math.round(android.R.attr.radius);
     }
 }

@@ -10,7 +10,6 @@ import com.bumptech.glide.load.resource.bitmap.BitmapTransformation;
 /**
  * Created by lindan on 16-10-20.
  */
-
 public class RotateTransformation extends BitmapTransformation {
 
     private float rotateRotationAngle = 0f;

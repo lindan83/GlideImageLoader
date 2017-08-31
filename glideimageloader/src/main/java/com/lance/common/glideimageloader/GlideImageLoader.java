@@ -21,7 +21,7 @@ import com.bumptech.glide.signature.StringSignature;
 import com.lance.common.glideimageloader.transformations.BlurTransformation;
 import com.lance.common.glideimageloader.transformations.GlideCircleTransformation;
 import com.lance.common.glideimageloader.transformations.GlideRoundTransformation;
-import com.lance.common.glideimageloader.transformations.GrayscaleTransformation;
+import com.lance.common.glideimageloader.transformations.GrayScaleTransformation;
 import com.lance.common.glideimageloader.transformations.RotateTransformation;
 
 import java.io.File;
@@ -281,7 +281,7 @@ public class GlideImageLoader {
                         request.transform(new GlideCircleTransformation(context));
                     }
                 } else if (config.isGrayScale()) {
-                    request.transform(new GrayscaleTransformation(context));
+                    request.transform(new GrayScaleTransformation(context));
                 } else if (config.isBlur()) {
                     request.transform(new BlurTransformation(context, 8, 8));
                 } else if (config.isRotate()) {

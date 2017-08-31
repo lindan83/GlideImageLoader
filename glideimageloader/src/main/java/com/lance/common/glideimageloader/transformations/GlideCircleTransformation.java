@@ -16,11 +16,11 @@ import com.bumptech.glide.load.resource.bitmap.BitmapTransformation;
  */
 
 public class GlideCircleTransformation extends BitmapTransformation {
-    private int mBorderColor;
-    private int mBorderWidth;
-    private int mBorderAlpha;
+    private int borderColor;
+    private int borderWidth;
+    private int borderAlpha;
 
-    private Paint mBorderPaint;
+    private Paint borderPaint;
 
     public GlideCircleTransformation(Context context) {
         super(context);
@@ -34,16 +34,16 @@ public class GlideCircleTransformation extends BitmapTransformation {
      */
     public GlideCircleTransformation(Context context, int borderColor, int borderWidth, int borderAlpha) {
         super(context);
-        mBorderAlpha = borderAlpha;
-        mBorderColor = borderColor;
-        mBorderWidth = borderWidth;
-        mBorderPaint = new Paint();
-        mBorderPaint.setAntiAlias(true);
-        mBorderPaint.setDither(true);
-        mBorderPaint.setStyle(Paint.Style.STROKE);
-        mBorderPaint.setColor(mBorderColor);
-        mBorderPaint.setAlpha(mBorderAlpha);
-        mBorderPaint.setStrokeWidth(mBorderWidth);
+        this.borderAlpha = borderAlpha;
+        this.borderColor = borderColor;
+        this.borderWidth = borderWidth;
+        borderPaint = new Paint();
+        borderPaint.setAntiAlias(true);
+        borderPaint.setDither(true);
+        borderPaint.setStyle(Paint.Style.STROKE);
+        borderPaint.setColor(this.borderColor);
+        borderPaint.setAlpha(this.borderAlpha);
+        borderPaint.setStrokeWidth(this.borderWidth);
     }
 
     @Override
@@ -53,7 +53,7 @@ public class GlideCircleTransformation extends BitmapTransformation {
 
     private Bitmap circleCrop(BitmapPool pool, Bitmap source) {
         if (source == null) return null;
-        int size = Math.min(source.getWidth(), source.getHeight()) - (mBorderWidth / 2);
+        int size = Math.min(source.getWidth(), source.getHeight()) - (borderWidth / 2);
         int x = (source.getWidth() - size) / 2;
         int y = (source.getHeight() - size) / 2;
         Bitmap squared = Bitmap.createBitmap(source, x, y, size, size);
@@ -67,11 +67,11 @@ public class GlideCircleTransformation extends BitmapTransformation {
         paint.setShader(new BitmapShader(squared, BitmapShader.TileMode.CLAMP, BitmapShader.TileMode.CLAMP));
         paint.setAntiAlias(true);
         float r = size / 2f;
-        canvas.drawCircle(r, r, r - mBorderWidth, paint);
+        canvas.drawCircle(r, r, r - borderWidth, paint);
         //画边框
-        if (mBorderPaint != null && mBorderWidth > 0) {
-            float borderRadius = r - mBorderWidth / 2;
-            canvas.drawCircle(r, r, borderRadius, mBorderPaint);
+        if (borderPaint != null && borderWidth > 0) {
+            float borderRadius = r - borderWidth / 2;
+            canvas.drawCircle(r, r, borderRadius, borderPaint);
         }
         return result;
     }
